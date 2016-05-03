@@ -22,7 +22,7 @@ namespace DS3_FightclubBlacklist.DAL
             new Player{PlayerName="Vaati",EncounterTime=DateTime.Parse("2002-09-01")},
             new Player{PlayerName="Solaire",EncounterTime=DateTime.Parse("2001-09-01")},
             new Player{PlayerName="DarkNinjaSlayer99",EncounterTime=DateTime.Parse("2003-09-01")},
-            new Player{PlayerName="The Legend",EncounterTime=DateTime.Parse("2005-09-01")}
+            new Player{PlayerName="The Legend",Summary= "Estus Chug",EncounterTime=DateTime.Parse("2005-09-01")}
             };
 
             players.ForEach(s => context.Players.Add(s));

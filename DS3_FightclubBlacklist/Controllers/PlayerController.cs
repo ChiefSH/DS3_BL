@@ -47,7 +47,7 @@ namespace DS3_FightclubBlacklist.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PlayerID,PlayerName,Location,EncounterTime")] Player player)
+        public ActionResult Create([Bind(Include = "PlayerID,PlayerName,Summary,EncounterTime")] Player player)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace DS3_FightclubBlacklist.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlayerID,PlayerName,Location,EncounterTime")] Player player)
+        public ActionResult Edit([Bind(Include = "PlayerID,PlayerName,Summary,EncounterTime")] Player player)
         {
             if (ModelState.IsValid)
             {

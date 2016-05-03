@@ -11,7 +11,7 @@ namespace DS3_FightclubBlacklist.DAL
     public class BLContext : DbContext
     {
 
-        public BLContext() : base("BlacklistContext")
+        public BLContext() : base("BLContext")
         {
         }
 
