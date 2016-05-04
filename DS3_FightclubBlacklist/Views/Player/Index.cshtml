@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DS3_FightclubBlacklist.Models.Player>
+﻿@model PagedList.IPagedList<DS3_FightclubBlacklist.Models.Player>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Your Blacklist";
@@ -9,16 +11,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Player", "FormMethod.Get"))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
+        
         <th>
-            @Html.DisplayNameFor(model => model.PlayerName)
+            @Html.ActionLink("Sort A-Z", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Summary)
+            Summary
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EncounterTime)
+            @Html.ActionLink("Sort by Encounter", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -43,3 +54,11 @@
 }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+

@@ -8,17 +8,57 @@ using System.Web;
 using System.Web.Mvc;
 using DS3_FightclubBlacklist.DAL;
 using DS3_FightclubBlacklist.Models;
+using PagedList;
 
 namespace DS3_FightclubBlacklist.Controllers
 {
     public class PlayerController : Controller
     {
         private BLContext db = new BLContext();
+        
 
         // GET: Player
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Players.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var players = from s in db.Players
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                players = players.Where(s => s.PlayerName.Contains(searchString));
+                                       
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    players = players.OrderByDescending(s => s.PlayerName);
+                    break;
+               
+                case "date_desc":
+                    players = players.OrderByDescending(s => s.EncounterTime);
+                    break;
+                default:
+                    players = players.OrderBy(s => s.PlayerName);
+                    break;
+            }
+
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(players.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Player/Details/5
