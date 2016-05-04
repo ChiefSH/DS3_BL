@@ -89,8 +89,10 @@ namespace DS3_FightclubBlacklist.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PlayerID,PlayerName,Summary,EncounterTime")] Player player)
         {
+
             if (ModelState.IsValid)
             {
+
                 db.Players.Add(player);
                 db.SaveChanges();
                 return RedirectToAction("Index");
