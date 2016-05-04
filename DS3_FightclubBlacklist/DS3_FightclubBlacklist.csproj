@@ -147,6 +147,10 @@
     <Compile Include="Migrations\201605031437204_InitialCreate.Designer.cs">
       <DependentUpon>201605031437204_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605041857323_Catchup.cs" />
+    <Compile Include="Migrations\201605041857323_Catchup.Designer.cs">
+      <DependentUpon>201605041857323_Catchup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blacklist.cs" />
     <Compile Include="Models\Location.cs" />
@@ -209,6 +213,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201605031437204_InitialCreate.resx">
       <DependentUpon>201605031437204_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041857323_Catchup.resx">
+      <DependentUpon>201605041857323_Catchup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,7 +12,21 @@ namespace DS3_FightclubBlacklist.Models
         public int PlayerID { get; set; }
         public string PlayerName { get; set; }
         public string Summary { get; set; }
-        public DateTimeOffset EncounterTime { get; set; }
+
+        public DateTimeOffset EncounterTime
+        {
+            get
+            {
+                return encounterTime;
+            }
+
+            set
+            {
+                encounterTime = value;
+            }
+        }
+
+        private DateTimeOffset encounterTime = DateTimeOffset.Now;
 
         //Need to integrate Collections here
     }
