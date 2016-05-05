@@ -19,6 +19,7 @@
         <input type="submit" value="Search" />
     </p>
 }
+<div class= "BlacklistTable">
 <table class="table">
     <tr>
         
@@ -45,20 +46,30 @@
         <td>
             @Html.DisplayFor(modelItem => item.EncounterTime)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlayerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PlayerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlayerID })
-        </td>
+   <td>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Edit/Delete
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Edit", "Edit", new { id = item.PlayerID })</li>
+                <li>@Html.ActionLink("Details", "Details", new { id = item.PlayerID }) </li>
+                <li>@Html.ActionLink("Delete", "Delete", new { id = item.PlayerID })</li>
+            </ul>
+        </div>
+       </td>
     </tr>
-}
-
+    }
 </table>
+</div>
 
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<img src="~/Images/zoomzoom.jpg" />
 
 
